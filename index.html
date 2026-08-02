@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Berita PSMK Dikpora DIY</title>
+    
+    <!-- Font Fjalla One & Font System untuk Teks -->
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- PROPERTI UNTUK ANIMASI TEKS --- */
+        @property --s-anim { syntax: "<percentage>"; inherits: false; initial-value: 0%; }
+        @property --sm { syntax: "<percentage>"; inherits: false; initial-value: 0%; }
+        @property --x { syntax: "<percentage>"; inherits: false; initial-value: -180%; }
+        @property --x2 { syntax: "<percentage>"; inherits: false; initial-value: 0%; }
+        @property --sc { syntax: "<numbers>"; inherits: false; initial-value: 1; }
+        @property --ry { syntax: "<degrees>"; inherits: false; initial-value: -33deg; }
+        @property --ry2 { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+
+        /* --- RESET DASAR --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* --- GAYA BODI & TIPOGRAFI GABUNGAN --- */
+        body {
+            width: 100%;
+            min-height: 100vh; 
+            background: #000; 
+            color: #fff; 
+            font-family: system-ui, "Fjalla One", sans-serif; 
+            line-height: 1.5;
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: flex-start; 
+        }
+
+        h1 { font-size: 3rem; }
+        p { font-size: 1.5rem; text-align: justify; }
+        
+        img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        main {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1; /* Memastikan footer terdorong ke bawah */
+        }
+
+        /* --- GAYA HEADER & FOOTER WAVY --- */
+        header, footer {
+            width: 100%;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            animation: dance both linear 1.6s infinite alternate;
+        }
+        
+        header {
+            padding: 20px 0 70px;
+            background: #780000;
+            --s1: shape(from 0 0,vline to calc(100% - 35px),curve to 8.82% calc(100% - 20px) with 5.88% calc(100% - 4px),curve to 14.71% calc(100% - 22.5px) with 11.76% calc(100% - 36px),curve to 20.59% calc(100% - 8px) with 17.65% calc(100% - 9px),curve to 26.47% calc(100% - 24.5px) with 23.53% calc(100% - 7px),curve to 32.35% calc(100% - 40.5px) with 29.41% calc(100% - 42px),curve to 38.24% calc(100% - 44.5px) with 35.29% calc(100% - 39px),curve to 44.12% calc(100% - 49px) with 41.18% calc(100% - 50px),curve to 50% calc(100% - 36.5px) with 47.06% calc(100% - 48px),curve to 55.88% calc(100% - 22px) with 52.94% calc(100% - 25px),curve to 61.76% calc(100% - 29px) with 58.82% calc(100% - 19px),curve to 67.65% calc(100% - 51.5px) with 64.71% calc(100% - 39px),curve to 73.53% calc(100% - 58.5px) with 70.59% calc(100% - 64px),curve to 79.41% calc(100% - 41px) with 76.47% calc(100% - 53px),curve to 85.29% calc(100% - 30px) with 82.35% calc(100% - 29px),curve to 91.18% calc(100% - 34px) with 88.24% calc(100% - 31px),curve to 100% calc(100% - 35px) with 94.12% calc(100% - 37px),vline to 0, hline to 0);
+            --s2: shape(from 0 0,vline to calc(100% - 35px),curve to 8.82% calc(100% - 22px) with 5.88% calc(100% - 19px),curve to 14.71% calc(100% - 19.5px) with 11.76% calc(100% - 25px),curve to 20.59% calc(100% - 12px) with 17.65% calc(100% - 14px),curve to 26.47% calc(100% - 17px) with 23.53% calc(100% - 10px),curve to 32.35% calc(100% - 29px) with 29.41% calc(100% - 24px),curve to 38.24% calc(100% - 40.5px) with 35.29% calc(100% - 34px),curve to 44.12% calc(100% - 38.5px) with 41.18% calc(100% - 47px),curve to 50% calc(100% - 19px) with 47.06% calc(100% - 30px),curve to 55.88% calc(100% - 13.5px) with 52.94% calc(100% - 8px),curve to 61.76% calc(100% - 43.5px) with 58.82% calc(100% - 19px),curve to 67.65% calc(100% - 35px) with 64.71% calc(100% - 68px),curve to 73.53% calc(100% - 22px) with 70.59% calc(100% - 2px),curve to 79.41% calc(100% - 25.5px) with 76.47% calc(100% - 42px),curve to 85.29% calc(100% - 31.5px) with 82.35% calc(100% - 9px),curve to 91.18% calc(100% - 45px) with 88.24% calc(100% - 54px),curve to 100% calc(100% - 35px) with 94.12% calc(100% - 36px),vline to 0, hline to 0);
+        }
+
+        footer {
+            background: #219ebc;
+            padding: 70px 0 20px;
+            --s1: shape(from 0 100%,vline to 35px,curve to 7.5% 48.5px with 5% 65px,curve to 12.5% 20.5px with 10% 32px,curve to 17.5% 21.5px with 15% 9px,curve to 22.5% 22.5px with 20% 34px,curve to 27.5% 16.5px with 25% 11px,curve to 32.5% 40px with 30% 22px,curve to 37.5% 40px with 35% 58px,curve to 42.5% 32.5px with 40% 22px,curve to 47.5% 30px with 45% 43px,curve to 52.5% 41px with 50% 17px,curve to 57.5% 33.5px with 55% 65px,curve to 62.5% 18.5px with 60% 2px,curve to 67.5% 43.5px with 65% 35px,curve to 72.5% 55px with 70% 52px,curve to 77.5% 37px with 75% 58px,curve to 82.5% 23px with 80% 16px,curve to 87.5% 21px with 85% 30px,curve to 92.5% 32.5px with 90% 12px,curve to 100% 35px with 95% 53px,vline to 100%, hline to 0);
+            --s2: shape(from 0 100%,vline to 35px,curve to 7.5% 39.5px with 5% 62px,curve to 12.5% 34px with 10% 17px,curve to 17.5% 49.5px with 15% 51px,curve to 22.5% 26px with 20% 48px,curve to 27.5% 30.5px with 25% 4px,curve to 32.5% 33.5px with 30% 57px,curve to 37.5% 32.5px with 35% 10px,curve to 42.5% 32px with 40% 55px,curve to 47.5% 16.5px with 45% 9px,curve to 52.5% 18px with 50% 24px,curve to 57.5% 8px with 55% 12px,curve to 62.5% 13.5px with 60% 4px,curve to 67.5% 42px with 65% 23px,curve to 72.5% 45px with 70% 61px,curve to 77.5% 15px with 75% 29px,curve to 82.5% 20.5px with 80% 1px,curve to 87.5% 29px with 85% 40px,curve to 92.5% 39px with 90% 18px,curve to 100% 35px with 95% 60px,vline to 100%, hline to 0);
+        }
+
+        .wavy-img {
+            padding: 0;
+            width: 100%;
+            max-width: 1000px;
+            animation: dance both linear 1.6s infinite alternate;
+            --s1: shape(from 0 30px,curve to 5.56% 28.5px with 3.7% 31px,curve to 9.26% 20px with 7.41% 26px,curve to 12.96% 7.5px with 11.11% 14px,curve to 16.67% 6.5px with 14.81% 1px,curve to 20.37% 25px with 18.52% 12px,curve to 24.07% 32px with 22.22% 38px,curve to 27.78% 42px with 25.93% 26px,curve to 31.48% 35px with 29.63% 58px,curve to 35.19% 27.5px with 33.33% 12px,curve to 38.89% 36.5px with 37.04% 43px,curve to 42.59% 29px with 40.74% 30px,curve to 46.3% 23px with 44.44% 28px,curve to 50% 13px with 48.15% 18px,curve to 53.7% 16.5px with 51.85% 8px,curve to 57.41% 29.5px with 55.56% 25px,curve to 61.11% 31.5px with 59.26% 34px,curve to 64.81% 28.5px with 62.96% 29px,curve to 68.52% 27px with 66.67% 28px,curve to 72.22% 30.5px with 70.37% 26px,curve to 75.93% 47px with 74.07% 35px,curve to 79.63% 33.5px with 77.78% 59px,curve to 83.33% 5px with 81.48% 8px,curve to 87.04% 24.5px with 85.19% 2px,curve to 90.74% 46px with 88.89% 47px,curve to 94.44% 35.5px with 92.59% 45px,curve to 100% 30px with 96.3% 26px,vline to calc(100% - 30px),curve to 94.44% calc(100% - 43.5px) with 96.3% calc(100% - 54px),curve to 90.74% calc(100% - 29px) with 92.59% calc(100% - 33px),curve to 87.04% calc(100% - 37.5px) with 88.89% calc(100% - 25px),curve to 83.33% calc(100% - 51.5px) with 85.19% calc(100% - 50px),curve to 79.63% calc(100% - 35.5px) with 81.48% calc(100% - 53px),curve to 75.93% calc(100% - 26px) with 77.78% calc(100% - 18px),curve to 72.22% calc(100% - 22.5px) with 74.07% calc(100% - 34px),curve to 68.52% calc(100% - 29.5px) with 70.37% calc(100% - 11px),curve to 64.81% calc(100% - 52px) with 66.67% calc(100% - 48px),curve to 61.11% calc(100% - 45.5px) with 62.96% calc(100% - 56px),curve to 57.41% calc(100% - 31px) with 59.26% calc(100% - 35px),curve to 53.7% calc(100% - 34px) with 55.56% calc(100% - 27px),curve to 50% calc(100% - 24.5px) with 51.85% calc(100% - 41px),curve to 46.3% calc(100% - 19px) with 48.15% calc(100% - 8px),curve to 42.59% calc(100% - 30px) with 44.44% calc(100% - 30px),curve to 38.89% calc(100% - 40px) with 40.74% calc(100% - 30px),curve to 35.19% calc(100% - 34.5px) with 37.04% calc(100% - 50px),curve to 31.48% calc(100% - 19px) with 33.33% calc(100% - 19px),curve to 27.78% calc(100% - 18.5px) with 29.63% calc(100% - 19px),curve to 24.07% calc(100% - 27px) with 25.93% calc(100% - 18px),curve to 20.37% calc(100% - 25.5px) with 22.22% calc(100% - 36px),curve to 16.67% calc(100% - 36.5px) with 18.52% calc(100% - 15px),curve to 12.96% calc(100% - 49.5px) with 14.81% calc(100% - 58px),curve to 9.26% calc(100% - 45.5px) with 11.11% calc(100% - 41px),curve to 5.56% calc(100% - 39px) with 7.41% calc(100% - 50px),curve to 0 calc(100% - 30px) with 3.7% calc(100% - 28px),vline to 0);
+            --s2: shape(from 0 30px,curve to 5.56% 13px with 3.7% 5px,curve to 9.26% 17.5px with 7.41% 21px,curve to 12.96% 33.5px with 11.11% 14px,curve to 16.67% 50.5px with 14.81% 53px,curve to 20.37% 32px with 18.52% 48px,curve to 24.07% 9px with 22.22% 16px,curve to 27.78% 10px with 25.93% 2px,curve to 31.48% 17px with 29.63% 18px,curve to 35.19% 18.5px with 33.33% 16px,curve to 38.89% 39.5px with 37.04% 21px,curve to 42.59% 31px with 40.74% 58px,curve to 46.3% 27.5px with 44.44% 4px,curve to 50% 42px with 48.15% 51px,curve to 53.7% 22px with 51.85% 33px,curve to 57.41% 32.5px with 55.56% 11px,curve to 61.11% 41px with 59.26% 54px,curve to 64.81% 16px with 62.96% 28px,curve to 68.52% 24.5px with 66.67% 4px,curve to 72.22% 47px with 70.37% 45px,curve to 75.93% 52px with 74.07% 49px,curve to 79.63% 55px with 77.78% 55px,curve to 83.33% 42.5px with 81.48% 55px,curve to 87.04% 37px with 85.19% 30px,curve to 90.74% 36.5px with 88.89% 44px,curve to 94.44% 23.5px with 92.59% 29px,curve to 100% 30px with 96.3% 18px,vline to calc(100% - 30px),curve to 94.44% calc(100% - 17.5px) with 96.3% calc(100% - 2px),curve to 90.74% calc(100% - 27.5px) with 92.59% calc(100% - 33px),curve to 87.04% calc(100% - 20px) with 88.89% calc(100% - 22px),curve to 83.33% calc(100% - 22px) with 85.19% calc(100% - 18px),curve to 79.63% calc(100% - 38px) with 81.48% calc(100% - 26px),curve to 75.93% calc(100% - 25.5px) with 77.78% calc(100% - 50px),curve to 72.22% calc(100% - 12px) with 74.07% calc(100% - 1px),curve to 68.52% calc(100% - 29px) with 70.37% calc(100% - 23px),curve to 64.81% calc(100% - 20.5px) with 66.67% calc(100% - 35px),curve to 61.11% calc(100% - 18.5px) with 62.96% calc(100% - 6px),curve to 57.41% calc(100% - 27px) with 59.26% calc(100% - 31px),curve to 53.7% calc(100% - 19px) with 55.56% calc(100% - 23px),curve to 50% calc(100% - 8.5px) with 51.85% calc(100% - 15px),curve to 46.3% calc(100% - 13.5px) with 48.15% calc(100% - 2px),curve to 42.59% calc(100% - 34px) with 44.44% calc(100% - 25px),curve to 38.89% calc(100% - 33.5px) with 40.74% calc(100% - 43px),curve to 35.19% calc(100% - 25.5px) with 37.04% calc(100% - 24px),curve to 31.48% calc(100% - 27px) with 33.33% calc(100% - 27px),curve to 27.78% calc(100% - 38.5px) with 29.63% calc(100% - 27px),curve to 24.07% calc(100% - 32px) with 25.93% calc(100% - 50px),curve to 20.37% calc(100% - 35.5px) with 22.22% calc(100% - 14px),curve to 16.67% calc(100% - 33px) with 18.52% calc(100% - 57px),curve to 12.96% calc(100% - 9px) with 14.81% calc(100% - 9px),curve to 9.26% calc(100% - 31px) with 11.11% calc(100% - 9px),curve to 5.56% calc(100% - 31.5px) with 7.41% calc(100% - 53px),curve to 0 calc(100% - 30px) with 3.7% calc(100% - 10px),vline to 0);
+        }
+
+        .text-section {
+            padding: .3em max(1em, 50vw - 800px/2);
+            margin: 20px 0;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* --- GAYA GALERI GAMBAR --- */
+        .gallery-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: 50px; 
+            margin-bottom: 50px;
+            font-family: sans-serif; 
+        }
+
+        .gallery {
+            --s-bevel: 50px; 
+            display: flex;
+            gap: 10px;
+            margin: 10px;
+            width: 100%;
+            max-width: 1200px;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        .gallery > img {
+            flex: 1;
+            min-width: 0;
+            height: 300px;
+            object-fit: cover;
+            border-start-start-radius: var(--s-bevel) 100%;
+            border-end-end-radius: var(--s-bevel) 100%;
+            margin-inline-end: calc(-1 * var(--s-bevel));
+            corner-shape: bevel;
+            cursor: pointer;
+            transition: .3s linear;
+        }
+
+        .gallery > img:hover {
+            flex: 1.6;
+        }
+
+        .gallery > img:is(:first-child, :hover),
+        .gallery > img:hover + * { border-start-start-radius: 0 100%; }
+
+        .gallery > img:is(:last-child, :hover),
+        .gallery > img:has(+ :hover) { border-end-end-radius: 0 100%; margin-inline-end: 0; }
+
+        @supports not (corner-shape: bevel) {
+            .gallery > img { border-radius: 0 !important; margin: 0 !important; }
+        }
+
+        /* --- GAYA ANIMASI INTRO TEKS --- */
+        .intro-section {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            width: 100%;
+            margin-top: 20px;
+            font-family: "Fjalla One", sans-serif; 
+        }
+
+        .scene, .scene2 {
+            position: relative;
+            color: #fff;
+            font-size: clamp(1.2rem, 4vw, 3rem); 
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            margin-bottom: 20px; 
+        }
+
+        .scene2 { position: absolute; }
+        .scene { width: fit-content; }
+        .scene span { display: block; }
+
+        .move-number {
+            position: absolute; right: 0; transform-style: preserve-3d;
+            perspective: 1000px; transform: translateX(var(--x));
+            animation: move 10s linear infinite; will-change: transform;
+        }
+
+        .move-letter {
+            position: absolute; left: var(--x2); right: 0; opacity: 0;
+            transform: rotate(var(--ry2)); animation: moveletter 10s ease-in-out infinite; 
+            display: inline-block; width: fit-content;
+        }
+
+        .last-item {
+            transform: scale(1, var(--sc)) rotateY(var(--ry)) translateZ(-3px);
+            color: red; transition: transform 0.3s linear;
+        }
+
+        .number-container {
+            mask: linear-gradient(to right, transparent 0%, black 0%, black var(--s-anim), transparent var(--s-anim));
+            transform: translateZ(2px); animation: move2 10s ease-in-out infinite; 
+        }
+
+        .msn-container {
+            mask: linear-gradient(to right, transparent 0%, black 0%, black var(--sm), transparent var(--sm));
+            animation: msn-container 10s ease-in-out infinite;
+        }
+
+        .mask-number { display: flex; white-space: pre; }
+        .mask-number span { color: red; }
+
+        /* --- KEYFRAMES --- */
+        @keyframes dance {
+            0% {clip-path: var(--s1)}
+            to {clip-path: var(--s2)}
+        }
+
+        @keyframes move {
+            0% { --x: -180%; --sc: 1; --ry: -33deg; opacity: 0; }
+            1% { --x: -180%; --sc: 1; --ry: -33deg; opacity: 1; }
+            9% { --sc: 2; --x: 94%; --ry: -33deg; }
+            20% { --sc: 1; --ry: 0deg; --x: 94%; }
+            27% { --sc: 2; --ry: -33deg; --x: 94%; }
+            36% { --x: -180%; --sc: 1; --ry: -33deg; opacity: 1; }
+            38%, 100% { --x: -180%; --sc: 1; --ry: -33deg; opacity: 0; }
+        }
+
+        @keyframes move2 {
+            0% { --s-anim: 0%; }
+            10%, 27% { --s-anim: 100%; }
+            36%, 100% { --s-anim: 0%; }
+        }
+
+        @keyframes moveletter {
+            0%, 39% { opacity: 0; --x2: 0%; --ry2: 0deg; }
+            40% { opacity: 1; --x2: 0%; --ry2: 0deg; }
+            49%, 70% { --x2: 93%; --ry2: 720deg; opacity: 1; }
+            79% { --x2: 0%; --ry2: 0deg; opacity: 1; }
+            80%, 100% { opacity: 0; --x2: 0%; --ry2: 0deg; }
+        }
+
+        @keyframes msn-container {
+            0%, 40% { filter: blur(30px) contrast(10); --sm: 0%; }
+            50%, 70% { filter: blur(0px) contrast(10); --sm: 100%; }
+            80%, 100% { filter: blur(30px) contrast(10); --sm: 0%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Wavy -->
+    <header>
+    </header>
+
+    <main>
+        <!-- Bagian Animasi Intro (Dikpora DIY) -->
+        <div class="intro-section">
+            <div class="scene">
+                <div class="move-number">
+                    <span class="last-item"> SMK</span>
+                </div>
+                <div class="number-container">
+                    <span class="mask-number">Bidang Pembinaan </span>
+                </div>
+            </div>
+            <div class="scene2">
+                <div class="move-letter">
+                    <span class="last-item">Y</span>
+                </div>
+                <div class="msn-container">
+                    <span class="mask-number">Disdikpora <span>DIY</span></span>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Bagian Galeri Google Drive -->
+        <div class="gallery-section">
+                        
+            <!-- Baris 1: 6 Foto -->
+            <div class="gallery">
+                <img src="https://drive.google.com/thumbnail?id=1uVDq8zn2mTa-xhduyKq1ruoE2xY5LkU2&sz=w800" alt="Dokumentasi SMK 1">
+                <img src="https://drive.google.com/thumbnail?id=1MzBrXxJBrMHKIah9CT5sJMIWO3caa15_&sz=w800" alt="Dokumentasi SMK 2">
+                <img src="https://drive.google.com/thumbnail?id=1AIy3JPIOOGdmychMMu0G-YCZ9xBUoND8&sz=w800" alt="Dokumentasi SMK 3">
+                <img src="https://drive.google.com/thumbnail?id=1Ng2ynU6cloE5zomOGZyR7_NWkpW23TLy&sz=w800" alt="Dokumentasi SMK 4">
+                <img src="https://drive.google.com/thumbnail?id=1yHpM8f0h_D8ULeejJBo5ZtfHXxtqqGv8&sz=w800" alt="Dokumentasi SMK 5">
+                <img src="https://drive.google.com/thumbnail?id=1d8SP_dWRQRw4rsa3wxFPiEr9cT47eSzZ&sz=w800" alt="Dokumentasi SMK 6">
+            </div>
+            
+            <!-- Baris 2: 6 Foto (Arah terbalik / rtl) -->
+            <div class="gallery" style="direction: rtl;">
+                <img src="https://drive.google.com/thumbnail?id=1hjG6sUeT9-5st4ihImiOvKiKwcirIEle&sz=w800" alt="Dokumentasi SMK 7">
+                <img src="https://drive.google.com/thumbnail?id=1P9DHYzdg0vklLyBMtMqipQm1gBvl0y8h&sz=w800" alt="Dokumentasi SMK 8">
+                <img src="https://drive.google.com/thumbnail?id=10yNPj3r3saYVUl5jFi78lMQ5LmoK_e9K&sz=w800" alt="Dokumentasi SMK 9">
+                <img src="https://drive.google.com/thumbnail?id=1h0fF4L8Xs_5x8-_AxLq9I_2pwk6k9aq7&sz=w800" alt="Dokumentasi SMK 10">
+                <img src="https://drive.google.com/thumbnail?id=1Cv6eBxyuYz2ePkSXgr42uLHtGekX6QAf&sz=w800" alt="Dokumentasi SMK 11">
+                <img src="https://drive.google.com/thumbnail?id=1ZTzL5sd-Cu7BooZ5epetO8wQAUdcJfWx&sz=w800" alt="Dokumentasi SMK 12">
+            </div>
+
+            <!-- Baris 3: 7 Foto -->
+            <div class="gallery">
+                <img src="https://drive.google.com/thumbnail?id=1aFTHAvxMQEcMKj5qm7y0aOtB3j0n0qrf&sz=w800" alt="Dokumentasi SMK 13">
+                <img src="https://drive.google.com/thumbnail?id=1Ra-dI_gzYp4UYQ-QH6zt1eG75HG5Jk1n&sz=w800" alt="Dokumentasi SMK 14">
+                <img src="https://drive.google.com/thumbnail?id=1-vCD_k2aj4EW6TFWw-EQPzIaOLlDYRyw&sz=w800" alt="Dokumentasi SMK 15">
+                <img src="https://drive.google.com/thumbnail?id=1M3HtfGidIxyUkFA4q1l6w3mkZ1nX9oQp&sz=w800" alt="Dokumentasi SMK 16">
+                <img src="https://drive.google.com/thumbnail?id=1t-SiGA57Xx9wfOK9_C65vWaPpkDdZ-7i&sz=w800" alt="Dokumentasi SMK 17">
+                <img src="https://drive.google.com/thumbnail?id=1-ShLwozQsWaAbDrxr7pCBGL0ef3-hW_R&sz=w800" alt="Dokumentasi SMK 18">
+                <img src="https://drive.google.com/thumbnail?id=1MHB3tcSu_jJ7tvE6xrOhm9c3Q-M43LkZ&sz=w800" alt="Dokumentasi SMK 19">
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Wavy -->
+    <footer>
+       
+    </footer>
+
+</body>
+</html>
