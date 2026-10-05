@@ -1,48 +1,104 @@
 <!DOCTYPE html>
-<html lang="id"> 
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+
+  <!-- WAJIB untuk tampilan HP -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
   <title>SIM PTK DIY</title>
-  <link rel="icon" href="https://baldikbantul.jogjaprov.go.id/wp-content/uploads/2024/01/Coat_of_arms_of_Yogyakarta.svg.png" type="image/x-icon">
-   <style>
-    html, body {
+
+  <link
+    rel="icon"
+    href="https://baldikbantul.jogjaprov.go.id/wp-content/uploads/2024/01/Coat_of_arms_of_Yogyakarta.svg.png"
+    type="image/png"
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
       margin: 0;
       padding: 0;
+      width: 100%;
       height: 100%;
       overflow: hidden;
-      font-family: sans-serif;
+      font-family: Arial, sans-serif;
+      background: #ffffff;
     }
+
     .iframe-container {
-      position: relative;
-      width: 100%;
-      height: 100vh;
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100dvh;
+      overflow: hidden;
+      background: #ffffff;
     }
+
     iframe {
+      display: block;
       width: 100%;
       height: 100%;
-      border: none;
+      min-width: 0;
+      min-height: 0;
+      border: 0;
+      margin: 0;
+      padding: 0;
     }
+
     .loader {
-      position: absolute;
+      position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 1.2rem;
+      font-size: 16px;
       color: #666;
       z-index: 10;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 12px 20px;
+      border-radius: 8px;
+    }
+
+    /* Tampilan HP */
+    @media screen and (max-width: 768px) {
+      .iframe-container {
+        width: 100%;
+        height: 100dvh;
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
+      }
+
+      .loader {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
-</html>
+
 <body>
+
   <div class="iframe-container">
-    <div class="loader" id="loader">Loading...</div>
-    <iframe 
-      src="https://script.google.com/macros/s/AKfycbxC115kPyY1Td11fVDnhPYDRGFVLhaM0aTm0eNPBUAiwBk19KcAYgw10my5kmphv75H/exec" 
-      onload="document.getElementById('loader').style.display='none';"
-      allowfullscreen>
+
+    <div class="loader" id="loader">
+      Memuat halaman...
+    </div>
+
+    <iframe
+      src="https://script.google.com/macros/s/AKfycbxC115kPyY1Td11fVDnhPYDRGFVLhaM0aTm0eNPBUAiwBk19KcAYgw10my5kmphv75H/exec"
+      title="SIM PTK DIY"
+      allowfullscreen
+      loading="eager"
+      onload="document.getElementById('loader').style.display='none';">
     </iframe>
+
   </div>
+
 </body>
 </html>
